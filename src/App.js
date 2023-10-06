@@ -6,26 +6,7 @@ import { TodoSearch } from "./TodoSearch";
 import { TodoList } from "./TodoList";
 import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
-//organiza la siguiente funcion
-
-const useLocalStorage = (itemName, initialValue) => {
-  const withoutToDo = [{ text: "Crea un ToDo", completed: false }];
-  const storeData = localStorage.getItem(itemName);
-  if (!storeData) {
-    initialValue = withoutToDo;
-    localStorage.setItem(itemName, JSON.stringify(initialValue));
-  } else {
-    initialValue = JSON.parse(storeData);
-  }
-
-  const [item, setItem] = useState(initialValue);
-  console.log("first", item)
-  const saveItem = (newItem) => {
-    setItem(newItem);
-    localStorage.setItem(itemName, JSON.stringify(newItem));
-  };
-  return [item, saveItem];
-};
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
   //haz una funcion que quite los acentos
