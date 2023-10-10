@@ -1,0 +1,18 @@
+.todo-item-loading {
+  animation: skeleton-loading 1s linear infinite alternate;
+  box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+}
+
+.todo-item-checkbox-loading,
+.todo-item-remove-loading {
+  animation: skeleton-loading 600ms linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #4a4458;
+  }
+  100% {
+    background-color: #3f3a4b;
+  }
+}

@@ -5,7 +5,6 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import AppUI from "./AppUI";
 
 function App() {
-
   const removeAccents = (text) => {
     return text
       .normalize("NFD")
@@ -14,8 +13,13 @@ function App() {
       .toLowerCase();
   };
 
-  const [toDo, saveTodos] = useLocalStorage("Data_ToDo_V1", []);
-  console.log(toDo)
+  const {
+    item: toDo,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage("Data_ToDo_V1", []);
+
   const [searchValue, setSearchValue] = useState("");
 
   const completedToDo = (text) => {
@@ -24,8 +28,10 @@ function App() {
     newTodo[toDoIndex].completed = true;
     saveTodos(newTodo);
     sortToDo();
+    console.log("complete");
   };
   const sortToDo = () => {
+    console.log("ordenar");
     const newTodo = [...toDo];
     newTodo.sort((a, b) => {
       if (a.completed && b.completed) return 1;
@@ -35,6 +41,7 @@ function App() {
     saveTodos(newTodo);
   };
   const removeToDo = (text) => {
+    console.log("remover");
     const newTodo = [...toDo];
     const toDoIndex = newTodo.findIndex((todo) => todo.text === text);
     if (newTodo.length === 1) {
@@ -49,25 +56,31 @@ function App() {
   );
 
   const handleAddTodo = (text) => {
+    console.log("add");
+    if (text[0] !== text[0].toUpperCase()) {
+      text = text[0].toUpperCase() + text.slice(1);
+    }
+
     saveTodos([...toDo, { text, completed: false }]);
   };
 
   const completedCount = toDo.filter((todo) => todo.completed).length;
   const totalCount = toDo.length;
-  console.log(completedCount, totalCount);
 
-return(
-  <AppUI
-    completedCount={completedCount}
-    totalCount={totalCount}
-    searchValue={searchValue}
-    setSearchValue={setSearchValue}
-    filteredTodos={filteredTodos}
-    handleAddTodo={handleAddTodo}
-    completedToDo={completedToDo}
-    removeToDo={removeToDo}
-  />
-)}
-
+  return (
+    <AppUI
+      completedCount={completedCount}
+      totalCount={totalCount}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      filteredTodos={filteredTodos}
+      handleAddTodo={handleAddTodo}
+      completedToDo={completedToDo}
+      removeToDo={removeToDo}
+      loading={loading}
+      error={error}
+    />
+  );
+}
 
 export default App;
