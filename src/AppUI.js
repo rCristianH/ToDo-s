@@ -66,11 +66,8 @@ function AppUI() {
         </TodoContext.Consumer>
       </main>
       <footer className="App-footer">
-        <TodoContext.Consumer>
-          {({ handleAddTodo, searchValue }) => (
-            <CreateTodoButton onAdd={() => handleAddTodo(searchValue)} />
-          )}
-        </TodoContext.Consumer>
+            <CreateTodoButton  />
+          
       </footer>
     </div>
   );
