@@ -3,16 +3,17 @@ import { TodoCounter } from "./TodoCounter";
 import { TodoList } from "./TodoList";
 import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
-
+import { TodoSearch } from "./TodoSearch";
 import React from "react";
 import TodoItemLoading from "./TodoItem/TodoItemLoading";
 import { TodoContext } from "./ToDoContext";
+
 
 function AppUI() {
   return (
     <div className="App">
       <TodoContext.Consumer>
-        {({ loading, error, completedCount, totalCount}) => (
+        {({ loading, error, completedCount, totalCount, searchValue, setSearchValue}) => (
           <header className="App-header">
             {loading && (
               <h1 className="App-title">Estamos buscando tus ToDo`s</h1>
@@ -25,7 +26,9 @@ function AppUI() {
             )}
             {!loading && (
               <TodoCounter completed={completedCount} total={totalCount} />
+              
             )}
+            <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
           </header>
         )}
       </TodoContext.Consumer>
