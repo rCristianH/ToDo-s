@@ -7,13 +7,20 @@ import { TodoSearch } from "./TodoSearch";
 import React from "react";
 import TodoItemLoading from "./TodoItem/TodoItemLoading";
 import { TodoContext } from "./ToDoContext";
-
+import { TodoItemNoFound } from "./TodoItem/TodoItemNoFound";
 
 function AppUI() {
   return (
     <div className="App">
       <TodoContext.Consumer>
-        {({ loading, error, completedCount, totalCount, searchValue, setSearchValue}) => (
+        {({
+          loading,
+          error,
+          completedCount,
+          totalCount,
+          searchValue,
+          setSearchValue,
+        }) => (
           <header className="App-header">
             {loading && (
               <h1 className="App-title">Estamos buscando tus ToDo`s</h1>
@@ -26,9 +33,11 @@ function AppUI() {
             )}
             {!loading && (
               <TodoCounter completed={completedCount} total={totalCount} />
-              
             )}
-            <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+            <TodoSearch
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+            />
           </header>
         )}
       </TodoContext.Consumer>
@@ -47,27 +56,31 @@ function AppUI() {
                 </>
               )}
               {error && <p>Something went wrong...</p>}
-              {!loading &&
-                filteredTodos.map((todo) => (
-                  <TodoItem
-                    onComplete={() => {
-                      completedToDo(todo.text);
-                    }}
-                    onRemove={() => {
-                      removeToDo(todo.text);
-                    }}
-                    key={todo.text}
-                    text={todo.text}
-                    completed={todo.completed}
-                  />
-                ))}
+              {!loading ? (
+                filteredTodos.length > 0 ? (
+                  filteredTodos.map((todo) => (
+                    <TodoItem
+                      onComplete={() => {
+                        completedToDo(todo.text);
+                      }}
+                      onRemove={() => {
+                        removeToDo(todo.text);
+                      }}
+                      key={todo.text}
+                      text={todo.text}
+                      completed={todo.completed}
+                    />
+                  ))
+                ) : (
+                  <TodoItemNoFound />
+                )
+              ) : null}
             </TodoList>
           )}
         </TodoContext.Consumer>
       </main>
       <footer className="App-footer">
-            <CreateTodoButton  />
-          
+        <CreateTodoButton />
       </footer>
     </div>
   );
