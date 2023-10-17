@@ -11,75 +11,65 @@ import { TodoItemNoFound } from "./TodoItem/TodoItemNoFound";
 import { Modal } from "./Modal";
 
 function AppUI() {
-  const { openModal, setOpenModal } = React.useContext(TodoContext);
+  const {
+    openModal,
+    setOpenModal,
+    loading,
+    error,
+    completedCount,
+    totalCount,
+    searchValue,
+    setSearchValue,
+    filteredTodos,
+    completedToDo,
+    removeToDo,
+  } = React.useContext(TodoContext);
   return (
     <div className="App">
-      <TodoContext.Consumer>
-        {({
-          loading,
-          error,
-          completedCount,
-          totalCount,
-          searchValue,
-          setSearchValue,
-        }) => (
-          <header className="App-header">
-            {loading && (
-              <h1 className="App-title">Estamos buscando tus ToDo`s</h1>
-            )}
-            {error && (
-              <h1>
-                Something went wrong...
-                {error}
-              </h1>
-            )}
-            {!loading && (
-              <TodoCounter completed={completedCount} total={totalCount} />
-            )}
-            <TodoSearch
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-            />
-          </header>
+      <header className="App-header">
+        {loading && <h1 className="App-title">Estamos buscando tus ToDo`s</h1>}
+        {error && (
+          <h1>
+            Something went wrong...
+            {error}
+          </h1>
         )}
-      </TodoContext.Consumer>
+        {!loading && <TodoCounter />}
+        <TodoSearch />
+      </header>
 
       <main className="App-main">
-        <TodoContext.Consumer>
-          {({ filteredTodos, completedToDo, removeToDo, loading, error }) => (
-            <TodoList>
-              {loading && <p>Wait a moment...</p>}
-              {loading && (
-                <>
-                  <TodoItemLoading />
-                  <TodoItemLoading />
-                  <TodoItemLoading />
-                  <TodoItemLoading />
-                </>
-              )}
-              {error && <p>Something went wrong...</p>}
-              {!loading ? (
-                filteredTodos.length > 0 ? (
-                  filteredTodos.map((todo) => (
-                    <TodoItem
-                      onComplete={() => {
-                        completedToDo(todo.text);
-                      }}
-                      onRemove={() => {
-                        removeToDo(todo.text);
-                      }}
-                      key={todo.text}
-                      text={todo.text}
-                      completed={todo.completed}
-                    />
-                  ))
-                ) : (
-                  <TodoItemNoFound />
-                )
-              ) : null}
-            </TodoList>
+        <TodoList>
+          {loading && <p>Wait a moment...</p>}
+          {loading && (
+            <>
+              <TodoItemLoading />
+              <TodoItemLoading />
+              <TodoItemLoading />
+              <TodoItemLoading />
+            </>
           )}
-        </TodoContext.Consumer>
+          {error && <p>Something went wrong...</p>}
+          {!loading ? (
+            filteredTodos.length > 0 ? (
+              filteredTodos.map((todo) => (
+                <TodoItem
+                  onComplete={() => {
+                    completedToDo(todo.text);
+                  }}
+                  onRemove={() => {
+                    removeToDo(todo.text);
+                  }}
+                  key={todo.text}
+                  text={todo.text}
+                  completed={todo.completed}
+                />
+              ))
+            ) : (
+              <TodoItemNoFound />
+            )
+          ) : null}
+        </TodoList>
       </main>
       <footer className="App-footer">
         <CreateTodoButton />

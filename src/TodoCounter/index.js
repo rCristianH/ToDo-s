@@ -1,6 +1,11 @@
-function TodoCounter({ total, completed }) {
-  //crea un condicional de si completed == total el h2 lo reemplaze por "congratulations"
-  if (completed === total) {
+import React from "react";
+import { TodoContext } from "../ToDoContext";
+
+
+function TodoCounter() {
+  const { completedCount, totalCount } = React.useContext(TodoContext);
+
+  if (completedCount === totalCount) {
     return (
       <div>
         <h2>Congratulations you have complete all ToDos!</h2>
@@ -10,7 +15,7 @@ function TodoCounter({ total, completed }) {
     return (
       <div>
         <h2>
-          Haz completado {completed} de {total}
+          Haz completado {completedCount} de {totalCount}
         </h2>
       </div>
     );
