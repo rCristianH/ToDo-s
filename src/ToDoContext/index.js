@@ -20,6 +20,7 @@ function TodoProvider({ children }) {
   } = useLocalStorage("Data_ToDo_V1", []);
 
   const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const completedToDo = (text) => {
     const newTodo = [...toDo];
@@ -78,6 +79,8 @@ function TodoProvider({ children }) {
         removeToDo,
         loading,
         error,
+        openModal,
+        setOpenModal,
       }}
     >
       {children}

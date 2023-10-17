@@ -8,8 +8,10 @@ import React from "react";
 import TodoItemLoading from "./TodoItem/TodoItemLoading";
 import { TodoContext } from "./ToDoContext";
 import { TodoItemNoFound } from "./TodoItem/TodoItemNoFound";
+import { Modal } from "./Modal";
 
 function AppUI() {
+  const { openModal, setOpenModal } = React.useContext(TodoContext);
   return (
     <div className="App">
       <TodoContext.Consumer>
@@ -82,6 +84,7 @@ function AppUI() {
       <footer className="App-footer">
         <CreateTodoButton />
       </footer>
+      {!openModal && <Modal>La funcionalidad de agregar TODO</Modal>}
     </div>
   );
 }
