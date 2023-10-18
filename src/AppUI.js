@@ -70,7 +70,7 @@ function AppUI() {
       <footer className="App-footer">
         <CreateTodoButton />
       </footer>
-      {!openModal && <Modal><MakeToDo/></Modal>}
+      {openModal && <Modal><MakeToDo/></Modal>}
     </div>
   );
 }

@@ -2,13 +2,25 @@
   position: relative;
   bottom: auto;
   right: auto;
+  font-size: 36px;
 }
-.todo-text-name{
+.btn-cancelTodo {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 56px;
+  font-size: 32px;
+  background-color: #1c1b1f;
+  border: 2px solid #938f99;
+  color: #d0bcff;
+}
+.todo-text-name {
   border: 1px solid #79747e;
   width: 80%;
   max-width: 700px;
 }
 .container-makeTodo {
+  position: relative;
   max-width: 900px;
   border-radius: 24px;
   width: 50%;
