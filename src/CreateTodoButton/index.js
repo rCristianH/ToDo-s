@@ -6,9 +6,8 @@ function CreateTodoButton() {
 
   const handleClick = () => {
     if (searchValue.trim() === "") {
-      alert("Error: El campo de búsqueda está vacío.");
-    } else {
       setOpenModal(state => !state)
+    } else {
       handleAddTodo(searchValue);
     }
   };

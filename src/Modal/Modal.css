@@ -1,0 +1,15 @@
+.Modal{
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0);
+  height: 100px;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  flex-direction: column;
+  gap: 10px;
+  
+}

@@ -1,5 +1,6 @@
 .btn-primary {
   position: fixed;
+  z-index: 2;
   bottom: 10px;
   right: 10px;
   background-color: #d0bcff;

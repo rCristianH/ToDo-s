@@ -9,11 +9,11 @@ import TodoItemLoading from "./TodoItem/TodoItemLoading";
 import { TodoContext } from "./ToDoContext";
 import { TodoItemNoFound } from "./TodoItem/TodoItemNoFound";
 import { Modal } from "./Modal";
+import { MakeToDo } from "./Modal/MakeToDo";
 
 function AppUI() {
   const {
     openModal,
-    setOpenModal,
     loading,
     error,
     filteredTodos,
@@ -70,7 +70,7 @@ function AppUI() {
       <footer className="App-footer">
         <CreateTodoButton />
       </footer>
-      {!openModal && <Modal>La funcionalidad de agregar TODO</Modal>}
+      {!openModal && <Modal><MakeToDo/></Modal>}
     </div>
   );
 }

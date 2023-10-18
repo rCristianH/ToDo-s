@@ -1,0 +1,22 @@
+.btn-MakeToDo {
+  position: relative;
+  bottom: auto;
+  right: auto;
+}
+.todo-text-name{
+  border: 1px solid #79747e;
+  width: 80%;
+  max-width: 700px;
+}
+.container-makeTodo {
+  max-width: 900px;
+  border-radius: 24px;
+  width: 50%;
+  height: 50vh;
+  display: flex;
+  background-color: #313033;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
