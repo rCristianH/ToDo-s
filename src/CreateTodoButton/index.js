@@ -1,8 +1,6 @@
 import React from "react";
-import { TodoContext } from "../ToDoContext";
 
-function CreateTodoButton() {
-  const { handleAddTodo, searchValue, setOpenModal } = React.useContext(TodoContext);
+function CreateTodoButton({handleAddTodo, searchValue, setOpenModal }) {
 
   const handleClick = () => {
     if (searchValue.trim() === "") {

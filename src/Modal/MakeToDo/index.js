@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./MakeToDo.css";
 import { useContext } from "react";
-import { TodoContext } from "../../ToDoContext";
 import { MdOutlineCancel, MdSave} from "react-icons/md";
 
-function MakeToDo() {
+function MakeToDo({handleAddTodo, setOpenModal }) {
 
-  const { handleAddTodo, setOpenModal } = useContext(TodoContext)
   const [nameNewTodo, setNameNewTodo] = useState("");
 
   const onSubmit = () => {
@@ -16,7 +14,7 @@ function MakeToDo() {
   const onCancel = () => {
     console.log("first")
     setOpenModal(false)
-  } 
+  }
   const onChange = (event) => {
     setNameNewTodo(event.target.value)
   }

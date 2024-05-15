@@ -1,17 +1,18 @@
-import "./App.css";
-import { TodoCounter } from "./TodoCounter";
-import { TodoList } from "./TodoList";
-import { TodoItem } from "./TodoItem";
-import { CreateTodoButton } from "./CreateTodoButton";
-import { TodoSearch } from "./TodoSearch";
+//@ts-check
 import React from "react";
-import TodoItemLoading from "./TodoItem/TodoItemLoading";
-import { TodoContext } from "./ToDoContext";
-import { TodoItemNoFound } from "./TodoItem/TodoItemNoFound";
-import { Modal } from "./Modal";
-import { MakeToDo } from "./Modal/MakeToDo";
+import "./App.css";
+import { TodoCounter } from "../TodoCounter";
+import { TodoList } from "../TodoList";
+import { TodoItem } from "../TodoItem";
+import { CreateTodoButton } from "../CreateTodoButton";
+import { TodoSearch } from "../TodoSearch";
+import TodoItemLoading from "../TodoItem/TodoItemLoading";
+import { useTodos } from "./useTodos";
+import { TodoItemNoFound } from "../TodoItem/TodoItemNoFound";
+import { Modal } from "../Modal";
+import { MakeToDo } from "../Modal/MakeToDo";
 
-function AppUI() {
+function App() {
   const {
     openModal,
     loading,
@@ -23,7 +24,9 @@ function AppUI() {
     totalCount,
     searchValue,
     setSearchValue,
-  } = React.useContext(TodoContext);
+    setOpenModal,
+    handleAddTodo,
+  } = useTodos();
   return (
     <div className="App">
       <header className="App-header">
@@ -77,15 +80,19 @@ function AppUI() {
         </TodoList>
       </main>
       <footer className="App-footer">
-        <CreateTodoButton />
+        <CreateTodoButton
+          handleAddTodo={handleAddTodo}
+          searchValue={searchValue}
+          setOpenModal={setOpenModal}
+        />
       </footer>
       {openModal && (
         <Modal>
-          <MakeToDo />
+          <MakeToDo handleAddTodo={handleAddTodo} setOpenModal={setOpenModal} />
         </Modal>
       )}
     </div>
   );
 }
 
-export default AppUI;
+export default App;

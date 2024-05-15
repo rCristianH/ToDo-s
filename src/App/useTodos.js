@@ -1,9 +1,7 @@
-import React, { createContext, useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import React, { useState } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
-const TodoContext = createContext();
-
-function TodoProvider({ children }) {
+function useTodos() {
   const removeAccents = (text) => {
     return text
       .normalize("NFD")
@@ -66,26 +64,20 @@ function TodoProvider({ children }) {
 
   const completedCount = toDo.filter((todo) => todo.completed).length;
   const totalCount = toDo.length;
-  return (
-    <TodoContext.Provider
-      value={{
-        completedCount,
-        totalCount,
-        searchValue,
-        setSearchValue,
-        filteredTodos,
-        handleAddTodo,
-        completedToDo,
-        removeToDo,
-        loading,
-        error,
-        openModal,
-        setOpenModal,
-      }}
-    >
-      {children}
-    </TodoContext.Provider>
-  );
+  return {
+    completedCount,
+    totalCount,
+    searchValue,
+    setSearchValue,
+    filteredTodos,
+    handleAddTodo,
+    completedToDo,
+    removeToDo,
+    loading,
+    error,
+    openModal,
+    setOpenModal,
+  };
 }
 
-export { TodoContext, TodoProvider };
+export { useTodos };

@@ -1,7 +1,4 @@
 import React from "react";
-import { TodoContext } from "../ToDoContext";
-
-
   
 function TodoCounter({completedCount, totalCount}) {
   if (completedCount === totalCount) {
