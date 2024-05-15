@@ -2,9 +2,8 @@ import React from "react";
 import { TodoContext } from "../ToDoContext";
 
 
-function TodoCounter() {
-  const { completedCount, totalCount } = React.useContext(TodoContext);
-
+  
+function TodoCounter({completedCount, totalCount}) {
   if (completedCount === totalCount) {
     return (
       <div>

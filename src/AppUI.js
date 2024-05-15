@@ -19,6 +19,10 @@ function AppUI() {
     filteredTodos,
     completedToDo,
     removeToDo,
+    completedCount,
+    totalCount,
+    searchValue,
+    setSearchValue,
   } = React.useContext(TodoContext);
   return (
     <div className="App">
@@ -30,8 +34,13 @@ function AppUI() {
             {error}
           </h1>
         )}
-        {!loading && <TodoCounter />}
-        <TodoSearch />
+        {!loading && (
+          <TodoCounter
+            completedCount={completedCount}
+            totalCount={totalCount}
+          />
+        )}
+        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </header>
 
       <main className="App-main">
@@ -70,7 +79,11 @@ function AppUI() {
       <footer className="App-footer">
         <CreateTodoButton />
       </footer>
-      {openModal && <Modal><MakeToDo/></Modal>}
+      {openModal && (
+        <Modal>
+          <MakeToDo />
+        </Modal>
+      )}
     </div>
   );
 }
