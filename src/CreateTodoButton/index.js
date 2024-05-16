@@ -1,10 +1,9 @@
 import React from "react";
 
-function CreateTodoButton({handleAddTodo, searchValue, setOpenModal }) {
-
+function CreateTodoButton({ handleAddTodo, searchValue, setOpenModal }) {
   const handleClick = () => {
     if (searchValue.trim() === "") {
-      setOpenModal(state => !state)
+      setOpenModal((state) => !state);
     } else {
       handleAddTodo(searchValue);
     }

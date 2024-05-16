@@ -26,10 +26,8 @@ function useTodos() {
     newTodo[toDoIndex].completed = true;
     saveTodos(newTodo);
     sortToDo();
-    console.log("complete");
   };
   const sortToDo = () => {
-    console.log("ordenar");
     const newTodo = [...toDo];
     newTodo.sort((a, b) => {
       if (a.completed && b.completed) return 1;
@@ -39,7 +37,6 @@ function useTodos() {
     saveTodos(newTodo);
   };
   const removeToDo = (text) => {
-    console.log("remover");
     const newTodo = [...toDo];
     const toDoIndex = newTodo.findIndex((todo) => todo.text === text);
     if (newTodo.length === 1) {
@@ -54,7 +51,6 @@ function useTodos() {
   );
 
   const handleAddTodo = (text) => {
-    console.log("add");
     if (text[0] !== text[0].toUpperCase()) {
       text = text[0].toUpperCase() + text.slice(1);
     }

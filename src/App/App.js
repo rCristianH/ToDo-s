@@ -11,7 +11,6 @@ import { useTodos } from "./useTodos";
 import { Modal } from "../Modal";
 import { MakeToDo } from "../Modal/MakeToDo";
 import TodoMsgError from "../TodoItem/TodoMsgError";
-import { TodoItemNoFound } from "../TodoItem/TodoItemNoFound";
 
 function App() {
   const {
@@ -49,12 +48,11 @@ function App() {
       </header>
 
       <main className="App-main">
-        <TodoList 
+        <TodoList
           loading={loading}
           error={error}
           filteredTodos={filteredTodos}
-          onLoading=
-          {() => (
+          onLoading={() => (
             <>
               <p>Wait a moment...</p>
               <TodoItemLoading />
@@ -64,12 +62,7 @@ function App() {
             </>
           )}
           onError={() => <TodoMsgError />}
-          onNotFound=
-          {() => {
-            <TodoItemNoFound />;
-          }}
-          render=
-          {(todo) => (
+          render={(todo) => (
             <TodoItem
               onComplete={() => {
                 completedToDo(todo.text);
@@ -81,7 +74,8 @@ function App() {
               text={todo.text}
               completed={todo.completed}
             />
-          )}/>
+          )}
+        />
       </main>
       <footer className="App-footer">
         <CreateTodoButton

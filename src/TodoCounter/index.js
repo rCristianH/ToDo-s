@@ -1,6 +1,6 @@
 import React from "react";
-  
-function TodoCounter({completedCount, totalCount}) {
+
+function TodoCounter({ completedCount, totalCount }) {
   if (completedCount === totalCount) {
     return (
       <div>

@@ -1,7 +1,5 @@
-function randomNumber({top}) {
-  return (
-    Math.floor(Math.random() * top)
-  )
+function randomNumber({ top }) {
+  return Math.floor(Math.random() * top);
 }
 
-export default randomNumber
+export default randomNumber;
