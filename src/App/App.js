@@ -8,9 +8,10 @@ import { CreateTodoButton } from "../CreateTodoButton";
 import { TodoSearch } from "../TodoSearch";
 import TodoItemLoading from "../TodoItem/TodoItemLoading";
 import { useTodos } from "./useTodos";
-import { TodoItemNoFound } from "../TodoItem/TodoItemNoFound";
 import { Modal } from "../Modal";
 import { MakeToDo } from "../Modal/MakeToDo";
+import TodoMsgError from "../TodoItem/TodoMsgError";
+import { TodoItemNoFound } from "../TodoItem/TodoItemNoFound";
 
 function App() {
   const {
@@ -27,6 +28,7 @@ function App() {
     setOpenModal,
     handleAddTodo,
   } = useTodos();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -47,37 +49,39 @@ function App() {
       </header>
 
       <main className="App-main">
-        <TodoList>
-          {loading && <p>Wait a moment...</p>}
-          {loading && (
+        <TodoList 
+          loading={loading}
+          error={error}
+          filteredTodos={filteredTodos}
+          onLoading=
+          {() => (
             <>
+              <p>Wait a moment...</p>
               <TodoItemLoading />
               <TodoItemLoading />
               <TodoItemLoading />
               <TodoItemLoading />
             </>
           )}
-          {error && <p>Something went wrong...</p>}
-          {!loading ? (
-            filteredTodos.length > 0 ? (
-              filteredTodos.map((todo) => (
-                <TodoItem
-                  onComplete={() => {
-                    completedToDo(todo.text);
-                  }}
-                  onRemove={() => {
-                    removeToDo(todo.text);
-                  }}
-                  key={todo.text}
-                  text={todo.text}
-                  completed={todo.completed}
-                />
-              ))
-            ) : (
-              <TodoItemNoFound />
-            )
-          ) : null}
-        </TodoList>
+          onError={() => <TodoMsgError />}
+          onNotFound=
+          {() => {
+            <TodoItemNoFound />;
+          }}
+          render=
+          {(todo) => (
+            <TodoItem
+              onComplete={() => {
+                completedToDo(todo.text);
+              }}
+              onRemove={() => {
+                removeToDo(todo.text);
+              }}
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+            />
+          )}/>
       </main>
       <footer className="App-footer">
         <CreateTodoButton
