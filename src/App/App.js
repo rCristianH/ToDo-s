@@ -1,16 +1,15 @@
 //@ts-check
 import React from "react";
 import "./App.css";
-import { TodoCounter } from "../TodoCounter";
 import { TodoList } from "../TodoList";
 import { TodoItem } from "../TodoItem";
 import { CreateTodoButton } from "../CreateTodoButton";
-import { TodoSearch } from "../TodoSearch";
-import TodoItemLoading from "../TodoItem/TodoItemLoading";
+import { TodoItemLoading } from "../TodoItem/TodoItemLoading";
 import { useTodos } from "./useTodos";
 import { Modal } from "../Modal";
 import { MakeToDo } from "../Modal/MakeToDo";
-import TodoMsgError from "../TodoItem/TodoMsgError";
+import { TodoMsgError } from "../TodoItem/TodoMsgError";
+import { TodoHeader } from "../TodoHeader";
 
 function App() {
   const {
@@ -30,22 +29,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        {loading && <h1 className="App-title">Estamos buscando tus ToDo`s</h1>}
-        {error && (
-          <h1>
-            Something went wrong...
-            {error}
-          </h1>
-        )}
-        {!loading && (
-          <TodoCounter
-            completedCount={completedCount}
-            totalCount={totalCount}
-          />
-        )}
-        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      </header>
+      <TodoHeader
+        loading={loading}
+        error={error}
+        completedCount={completedCount}
+        totalCount={totalCount}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
 
       <main className="App-main">
         <TodoList

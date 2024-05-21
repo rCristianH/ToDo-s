@@ -12,4 +12,4 @@ function TodoItemLoading() {
   );
 }
 
-export default TodoItemLoading;
+export { TodoItemLoading };
