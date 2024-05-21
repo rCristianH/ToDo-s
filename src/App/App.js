@@ -10,7 +10,7 @@ import { Modal } from "../Modal";
 import { MakeToDo } from "../Modal/MakeToDo";
 import { TodoMsgError } from "../TodoItem/TodoMsgError";
 import { TodoHeader } from "../TodoHeader";
-import { ChangeAlertWithStorageListener } from "../ChangeAlert";
+import { ChangeAlert } from "../ChangeAlert";
 
 
 function App() {
@@ -83,7 +83,7 @@ function App() {
           <MakeToDo handleAddTodo={handleAddTodo} setOpenModal={setOpenModal} />
         </Modal>
       )}
-      <ChangeAlertWithStorageListener sync={syncTodos}/>
+      <ChangeAlert sync={syncTodos}/>
     </div>
   );
 }

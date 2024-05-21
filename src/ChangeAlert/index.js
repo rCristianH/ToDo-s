@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { withStorageListener } from "./withStorageListener";
+import { useStorageListener } from "./useStorageListener";
 
-function ChangeAlert({ show, toggleShow }) {
+function ChangeAlert({sync}) {
+  const { show, toggleShow } = useStorageListener(sync);
   useEffect(() => {
     // Establece un temporizador de 3 segundos
     const timer = setTimeout(() => {
@@ -10,12 +11,12 @@ function ChangeAlert({ show, toggleShow }) {
 
     // Limpia el temporizador si el componente se desmonta
     return () => clearTimeout(timer);
-  }, [toggleShow,show]);
+  }, [toggleShow, show]);
   if (show) {
     return (
       <>
         <p>Hay cambios please, recharge...</p>
-        <button class="btn btn-secondary" onClick={toggleShow}>
+        <button className="btn btn-secondary" onClick={toggleShow}>
           ReCharge
         </button>
       </>
@@ -25,6 +26,5 @@ function ChangeAlert({ show, toggleShow }) {
   }
 }
 
-const ChangeAlertWithStorageListener = withStorageListener(ChangeAlert);
 
-export { ChangeAlertWithStorageListener };
+export { ChangeAlert };
