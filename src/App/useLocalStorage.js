@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function useLocalStorage(itemName, initialValue) {
   const [item, setItem] = useState(initialValue);
+  const [sync, setSync] = useState(true)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -20,19 +21,26 @@ function useLocalStorage(itemName, initialValue) {
       if (JSON.stringify(parseItem) !== JSON.stringify(item)) {
         setItem(parseItem);
       }
+      setSync(true)
 
       setLoading(false);
     } catch (error) {
       setLoading(false);
       setError(true);
     }
-  }, [itemName, initialValue, item]); // Asegúrate de incluir 'item' en la dependencia del useEffect
+  }, [itemName, initialValue, item, sync]); // Asegúrate de incluir 'item' en la dependencia del useEffect
 
   const saveItem = (newItem) => {
     setItem(newItem);
     localStorage.setItem(itemName, JSON.stringify(newItem));
   };
-  return { item, saveItem, loading, error };
+
+  const synct = () => {
+    setLoading(true)
+    setSync(false)
+  }
+
+  return { item, saveItem, loading, error, synct };
 }
 
 export { useLocalStorage };

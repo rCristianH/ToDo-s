@@ -5,6 +5,12 @@
   right: 10px;
   background-color: #d0bcff;
   color: #381e72;
+}
+.btn-secondary {
+  background-color: #ffbcbc;
+  color: #721e1e;
+}
+.btn{
   font-size: 20px;
   font-weight: 600;
   padding: 10px 20px;

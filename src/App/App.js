@@ -10,6 +10,8 @@ import { Modal } from "../Modal";
 import { MakeToDo } from "../Modal/MakeToDo";
 import { TodoMsgError } from "../TodoItem/TodoMsgError";
 import { TodoHeader } from "../TodoHeader";
+import { ChangeAlertWithStorageListener } from "../ChangeAlert";
+
 
 function App() {
   const {
@@ -25,6 +27,7 @@ function App() {
     setSearchValue,
     setOpenModal,
     handleAddTodo,
+    syncTodos
   } = useTodos();
 
   return (
@@ -80,6 +83,7 @@ function App() {
           <MakeToDo handleAddTodo={handleAddTodo} setOpenModal={setOpenModal} />
         </Modal>
       )}
+      <ChangeAlertWithStorageListener sync={syncTodos}/>
     </div>
   );
 }

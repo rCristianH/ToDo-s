@@ -15,6 +15,7 @@ function useTodos() {
     saveItem: saveTodos,
     loading,
     error,
+    synct: syncTodos,
   } = useLocalStorage("Data_ToDo_V1", []);
 
   const [searchValue, setSearchValue] = useState("");
@@ -73,6 +74,7 @@ function useTodos() {
     error,
     openModal,
     setOpenModal,
+    syncTodos,
   };
 }
 
