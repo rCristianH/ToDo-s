@@ -1,10 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 
 function useLocalStorage(itemName, initialValue) {
-  const [item, setItem] = useState(initialValue);
-  const [sync, setSync] = useState(true)
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState({ initialValue }));
+  const { item, sync, loading, error } = state;
+
+  const onSync = () => {
+    dispatch({ type: actionTypes.sync });
+  };
+  const onFullSync = () => {
+    dispatch({ type: actionTypes.fullSync });
+  };
+  const onCatch = () => {
+    dispatch({ type: actionTypes.catch });
+  };
+  const onUpdateItem = (sendItem) => {
+    dispatch({ type: actionTypes.item, payload: sendItem });
+  };
 
   useEffect(() => {
     try {
@@ -19,28 +30,60 @@ function useLocalStorage(itemName, initialValue) {
       }
 
       if (JSON.stringify(parseItem) !== JSON.stringify(item)) {
-        setItem(parseItem);
+        onUpdateItem(parseItem);
       }
-      setSync(true)
-
-      setLoading(false);
+      onFullSync();
     } catch (error) {
-      setLoading(false);
-      setError(true);
+      onCatch();
     }
-  }, [itemName, initialValue, item, sync]); // Asegúrate de incluir 'item' en la dependencia del useEffect
+  }, [sync]); // Asegúrate de incluir 'item' en la dependencia del useEffect
 
   const saveItem = (newItem) => {
-    setItem(newItem);
+    onUpdateItem(newItem);
     localStorage.setItem(itemName, JSON.stringify(newItem));
   };
 
   const synct = () => {
-    setLoading(true)
-    setSync(false)
-  }
-
+    onSync();
+  };
   return { item, saveItem, loading, error, synct };
 }
+
+const initialState = ({ initialValue }) => ({
+  item: initialValue,
+  sync: true,
+  loading: true,
+  error: false,
+});
+const actionTypes = {
+  sync: "SYNC",
+  fullSync: "FULLSYNC",
+  item: "ITEM",
+  catch: "CATCH",
+};
+const reduceObj = (state, payload) => ({
+  [actionTypes.sync]: {
+    ...state,
+    sync: false,
+    loading: false,
+  },
+  [actionTypes.fullSync]: {
+    ...state,
+    sync: true,
+    loading: false,
+  },
+  [actionTypes.catch]: {
+    ...state,
+    loading: false,
+    error: true,
+  },
+  [actionTypes.item]: {
+    ...state,
+    item: payload,
+  },
+});
+const reducer = (state, action) => {
+  return reduceObj(state, action.payload)[action.type] || state;
+};
 
 export { useLocalStorage };
