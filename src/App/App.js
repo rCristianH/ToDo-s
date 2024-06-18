@@ -12,24 +12,26 @@ import { TodoMsgError } from "../TodoItem/TodoMsgError";
 import { TodoHeader } from "../TodoHeader";
 import { ChangeAlert } from "../ChangeAlert";
 
-
 function App() {
+  const { stateS, stateUpdater } = useTodos();
+
   const {
-    openModal,
     loading,
     error,
-    filteredTodos,
-    completedToDo,
-    removeToDo,
     completedCount,
     totalCount,
+    filteredTodos,
+    openModal,
     searchValue,
+  } = stateS;
+  const {
     setSearchValue,
-    setOpenModal,
     handleAddTodo,
-    syncTodos
-  } = useTodos();
-
+    completedToDo,
+    removeToDo,
+    setOpenModal,
+    syncTodos,
+  } = stateUpdater;
   return (
     <div className="App">
       <TodoHeader
@@ -83,7 +85,7 @@ function App() {
           <MakeToDo handleAddTodo={handleAddTodo} setOpenModal={setOpenModal} />
         </Modal>
       )}
-      <ChangeAlert sync={syncTodos}/>
+      <ChangeAlert sync={syncTodos} />
     </div>
   );
 }

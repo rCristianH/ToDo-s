@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useTodos() {
@@ -61,21 +61,24 @@ function useTodos() {
 
   const completedCount = toDo.filter((todo) => todo.completed).length;
   const totalCount = toDo.length;
-  return {
+  const stateS = {
+    loading,
+    error,
     completedCount,
     totalCount,
-    searchValue,
-    setSearchValue,
     filteredTodos,
+    openModal,
+    searchValue,
+  };
+  const stateUpdater = {
+    setSearchValue,
     handleAddTodo,
     completedToDo,
     removeToDo,
-    loading,
-    error,
-    openModal,
     setOpenModal,
     syncTodos,
   };
+  return {stateS, stateUpdater}
 }
 
 export { useTodos };
