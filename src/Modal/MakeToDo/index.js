@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./MakeToDo.css";
-import { useContext } from "react";
 import { MdOutlineCancel, MdSave } from "react-icons/md";
 
 function MakeToDo({ handleAddTodo, setOpenModal }) {
