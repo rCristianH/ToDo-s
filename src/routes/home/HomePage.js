@@ -1,20 +1,19 @@
 //@ts-check
 import React from "react";
 import "./App.css";
-import { TodoList } from "../TodoList";
-import { TodoItem } from "../TodoItem";
-import { CreateTodoButton } from "../CreateTodoButton";
-import { TodoItemLoading } from "../TodoItem/TodoItemLoading";
-import { useTodos } from "./useTodos";
-import { Modal } from "../Modal";
-import { MakeToDo } from "../Modal/MakeToDo";
-import { TodoMsgError } from "../TodoItem/TodoMsgError";
-import { TodoHeader } from "../TodoHeader";
-import { ChangeAlert } from "../ChangeAlert";
+import { TodoList } from "../../UI/TodoList";
+import { TodoItem } from "../../UI/TodoItem";
+import { CreateTodoButton } from "../../UI/CreateTodoButton";
+import { TodoItemLoading } from "../../UI/TodoItem/TodoItemLoading";
+import { useTodos } from "../../utils/useTodos";
+import { Modal } from "../../UI/Modal";
+import { MakeToDo } from "../../UI/Modal/MakeToDo";
+import { TodoMsgError } from "../../UI/TodoItem/TodoMsgError";
+import { TodoHeader } from "../../UI/TodoHeader";
+import { ChangeAlert } from "../../UI/ChangeAlert";
 
-function App() {
+function HomePage() {
   const { stateS, stateUpdater } = useTodos();
-
   const {
     loading,
     error,
@@ -29,6 +28,7 @@ function App() {
     handleAddTodo,
     completedToDo,
     removeToDo,
+    editToDo,
     setOpenModal,
     syncTodos,
   } = stateUpdater;
@@ -61,12 +61,15 @@ function App() {
           render={(todo) => (
             <TodoItem
               onComplete={() => {
-                completedToDo(todo.text);
+                completedToDo(todo.id);
               }}
               onRemove={() => {
-                removeToDo(todo.text);
+                removeToDo(todo.id);
               }}
-              key={todo.text}
+              onEdit={()=>{
+                editToDo(todo.id)
+              }}
+              key={todo.id}
               text={todo.text}
               completed={todo.completed}
             />
@@ -90,4 +93,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;

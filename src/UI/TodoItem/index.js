@@ -1,8 +1,8 @@
 //@ts-check
 import React from "react";
-import { MdDoneAll, MdDeleteOutline } from "react-icons/md";
+import { MdDoneAll, MdDeleteOutline, MdEdit} from "react-icons/md";
 
-function TodoItem({ text, completed, onComplete, onRemove }) {
+function TodoItem({ text, completed, onComplete, onRemove, onEdit}) {
   return (
     <li className="todo-item">
       <span onClick={onComplete} className="todo-item-checkbox">
@@ -13,7 +13,13 @@ function TodoItem({ text, completed, onComplete, onRemove }) {
       >
         {text}
       </span>
-
+       <span
+        className="
+      todo-item-edit"
+        onClick={onEdit}
+      >
+        <MdEdit />
+      </span>
       <span
         className="
       todo-item-remove"

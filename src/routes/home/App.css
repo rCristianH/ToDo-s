@@ -10,7 +10,7 @@
   background-color: #ffbcbc;
   color: #721e1e;
 }
-.btn{
+.btn {
   font-size: 20px;
   font-weight: 600;
   padding: 10px 20px;
@@ -97,6 +97,7 @@
   padding: 10px;
   display: flex;
   border-radius: 24px;
+  gap: 10px;
   justify-content: space-between;
 }
 .todo-item-text {
@@ -108,7 +109,8 @@
   color: #cac4d0;
 }
 .todo-item-checkbox,
-.todo-item-remove {
+.todo-item-remove,
+.todo-item-edit {
   box-sizing: border-box;
   color: #cac4d0;
   background-color: #4a4458;

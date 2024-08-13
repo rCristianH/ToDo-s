@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
+import {getTime} from "../utils/genIDs"
 
 function useTodos() {
   const removeAccents = (text) => {
@@ -16,14 +17,14 @@ function useTodos() {
     loading,
     error,
     synct: syncTodos,
-  } = useLocalStorage("Data_ToDo_V1", []);
+  } = useLocalStorage("Data_ToDo_V2", []);
 
   const [searchValue, setSearchValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
-  const completedToDo = (text) => {
+  const completedToDo = (id) => {
     const newTodo = [...toDo];
-    const toDoIndex = newTodo.findIndex((todo) => todo.text === text);
+    const toDoIndex = newTodo.findIndex((todo) => todo.id === id);
     newTodo[toDoIndex].completed = true;
     saveTodos(newTodo);
     sortToDo();
@@ -37,15 +38,24 @@ function useTodos() {
     });
     saveTodos(newTodo);
   };
-  const removeToDo = (text) => {
+  const removeToDo = (id) => {
     const newTodo = [...toDo];
-    const toDoIndex = newTodo.findIndex((todo) => todo.text === text);
+    const toDoIndex = newTodo.findIndex((todo) => todo.id === id);
     if (newTodo.length === 1) {
       newTodo.push({ text: "Crea un ToDo", completed: false });
     }
     newTodo.splice(toDoIndex, 1);
     saveTodos(newTodo);
   };
+
+  const editToDo = (id) => {
+    const updateToDO = "pello"
+    const todoList = [...toDo];
+    const toDoIndex = todoList.findIndex((todo) => todo.id === id);
+    todoList[toDoIndex].text = updateToDO
+    saveTodos(todoList);
+
+  }
 
   const filteredTodos = toDo.filter((todo) =>
     removeAccents(todo.text).includes(removeAccents(searchValue))
@@ -56,8 +66,10 @@ function useTodos() {
       text = text[0].toUpperCase() + text.slice(1);
     }
 
-    saveTodos([...toDo, { text, completed: false }]);
+    saveTodos([...toDo, { text, completed: false, id: getTime()}]);
   };
+
+  
 
   const completedCount = toDo.filter((todo) => todo.completed).length;
   const totalCount = toDo.length;
@@ -76,6 +88,7 @@ function useTodos() {
     completedToDo,
     removeToDo,
     setOpenModal,
+    editToDo,
     syncTodos,
   };
   return {stateS, stateUpdater}
