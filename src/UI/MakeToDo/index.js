@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTodos } from "../../utils/useTodos";
 
 function MakeToDo() {
-  const { stateS, stateUpdater } = useTodos();
+  const { stateUpdater } = useTodos();
   const { handleAddTodo } = stateUpdater;
   const [nameNewTodo, setNameNewTodo] = useState("");
   const navigate = useNavigate();

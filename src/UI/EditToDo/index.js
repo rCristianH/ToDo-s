@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTodos } from "../../utils/useTodos";
 
 const EditToDo = () => {
-  const { stateS, stateUpdater } = useTodos();
+  const { stateUpdater } = useTodos();
   const { editToDo } = stateUpdater;
 
   const [nameNewTodo, setNameNewTodo] = useState("");

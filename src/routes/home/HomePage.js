@@ -6,11 +6,8 @@ import { TodoItem } from "../../UI/TodoItem";
 import { CreateTodoButton } from "../../UI/CreateTodoButton";
 import { TodoItemLoading } from "../../UI/TodoItem/TodoItemLoading";
 import { useTodos } from "../../utils/useTodos";
-/* import { Modal } from "../../UI/Modal";
- */ import { MakeToDo } from "../../UI/MakeToDo";
 import { TodoMsgError } from "../../UI/TodoItem/TodoMsgError";
 import { TodoHeader } from "../../UI/TodoHeader";
-import { ChangeAlert } from "../../UI/ChangeAlert";
 import { useNavigate } from "react-router-dom";
 
 function HomePage() {
@@ -22,17 +19,13 @@ function HomePage() {
     completedCount,
     totalCount,
     filteredTodos,
-    /*     openModal,
-     */ searchValue,
+    searchValue,
   } = stateS;
   const {
     setSearchValue,
     handleAddTodo,
     completedToDo,
     removeToDo,
-    editToDo,
-    /*     setOpenModal,
-     */ syncTodos,
   } = stateUpdater;
   return (
     <div className="App">
