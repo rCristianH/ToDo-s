@@ -5,7 +5,7 @@ import { getTime } from "../utils/genIDs";
 function useTodos() {
   const removeAccents = (text) => {
     return text
-      .normalize("NFD") 
+      .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .normalize("NFC")
       .toLowerCase();

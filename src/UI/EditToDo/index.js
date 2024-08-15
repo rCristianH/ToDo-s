@@ -19,7 +19,7 @@ const EditToDo = () => {
     const number = url.split("/edit/")[1];
 
     // Mostrar el número extraído
-    return number
+    return number;
   };
   const onCancel = () => {
     navigate("/");
@@ -30,9 +30,9 @@ const EditToDo = () => {
   const onSubmit = () => {
     if (nameNewTodo.trim() === "") {
       alert("make a msg error, to msg null ");
-      onCancel()
+      onCancel();
     } else {
-      editToDo(getId(),nameNewTodo);
+      editToDo(getId(), nameNewTodo);
       onCancel();
     }
   };

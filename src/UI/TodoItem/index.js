@@ -13,16 +13,12 @@ function TodoItem({ text, completed, onComplete, onRemove, onEdit }) {
       >
         {text}
       </span>
-      <span
-        className="todo-item-edit"
-        onClick={onEdit}>
-          <MdEdit />
+      <span className="todo-item-edit" onClick={onEdit}>
+        <MdEdit />
       </span>
 
-      <span
-        className="todo-item-remove"
-        onClick={onRemove}>
-          <MdDeleteOutline />
+      <span className="todo-item-remove" onClick={onRemove}>
+        <MdDeleteOutline />
       </span>
     </li>
   );

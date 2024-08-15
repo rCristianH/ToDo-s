@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useStorageListener } from "./useStorageListener";
 
-function ChangeAlert({sync}) {
+function ChangeAlert({ sync }) {
   const { show, toggleShow } = useStorageListener(sync);
   useEffect(() => {
     // Establece un temporizador de 3 segundos
@@ -25,6 +25,5 @@ function ChangeAlert({sync}) {
     return null;
   }
 }
-
 
 export { ChangeAlert };

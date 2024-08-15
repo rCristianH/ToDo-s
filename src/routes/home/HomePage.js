@@ -69,7 +69,7 @@ function HomePage() {
                 removeToDo(todo.id);
               }}
               onEdit={() => {
-                navigate(`/edit/${todo.id}`)
+                navigate(`/edit/${todo.id}`);
               }}
               key={todo.id}
               text={todo.text}

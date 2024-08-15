@@ -12,10 +12,10 @@ function MakeToDo() {
 
   const onSubmit = () => {
     if (nameNewTodo.trim() === "") {
-      alert("make a msg error, to msg null ")
+      alert("make a msg error, to msg null ");
     } else {
       handleAddTodo(nameNewTodo);
-      onCancel()
+      onCancel();
     }
   };
   const onCancel = () => {
