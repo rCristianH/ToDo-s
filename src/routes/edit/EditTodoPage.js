@@ -1,5 +1,7 @@
+import { EditToDo } from "../../UI/EditToDo";
+
 function EditTodoPage() {
-  return <p>Edit</p>;
+  return <EditToDo/>;
 }
 
 export { EditTodoPage };

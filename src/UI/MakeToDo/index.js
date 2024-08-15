@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import "./MakeToDo.css";
 import { MdOutlineCancel, MdSave } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useTodos } from "../../utils/useTodos";
 
-function MakeToDo({ handleAddTodo, setOpenModal }) {
+function MakeToDo() {
+  const { stateS, stateUpdater } = useTodos();
+  const { handleAddTodo } = stateUpdater;
   const [nameNewTodo, setNameNewTodo] = useState("");
+  const navigate = useNavigate();
 
   const onSubmit = () => {
-    handleAddTodo(nameNewTodo);
-    setOpenModal(false);
+    if (nameNewTodo.trim() === "") {
+      alert("make a msg error, to msg null ")
+    } else {
+      handleAddTodo(nameNewTodo);
+      onCancel()
+    }
   };
   const onCancel = () => {
-    setOpenModal(false);
+    navigate("/");
   };
   const onChange = (event) => {
     setNameNewTodo(event.target.value);

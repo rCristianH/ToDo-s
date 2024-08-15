@@ -1,5 +1,7 @@
+import { MakeToDo } from "../../UI/MakeToDo";
+
 function NewTodoPage() {
-  return <p>New Todo</p>;
+  return <MakeToDo />;
 }
 
 export { NewTodoPage };

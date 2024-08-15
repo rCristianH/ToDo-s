@@ -21,10 +21,7 @@
 }
 .container-makeTodo {
   position: relative;
-  max-width: 900px;
-  border-radius: 24px;
-  width: 50%;
-  height: 50vh;
+  height: 100vh;
   display: flex;
   background-color: #313033;
   justify-content: center;

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import {getTime} from "../utils/genIDs"
+import { getTime } from "../utils/genIDs";
 
 function useTodos() {
   const removeAccents = (text) => {
     return text
-      .normalize("NFD")
+      .normalize("NFD") 
       .replace(/[\u0300-\u036f]/g, "")
       .normalize("NFC")
       .toLowerCase();
@@ -48,14 +48,13 @@ function useTodos() {
     saveTodos(newTodo);
   };
 
-  const editToDo = (id) => {
-    const updateToDO = "pello"
+  const editToDo = (id, newName) => {
+    const updateToDO = newName;
     const todoList = [...toDo];
     const toDoIndex = todoList.findIndex((todo) => todo.id === id);
-    todoList[toDoIndex].text = updateToDO
+    todoList[toDoIndex].text = updateToDO;
     saveTodos(todoList);
-
-  }
+  };
 
   const filteredTodos = toDo.filter((todo) =>
     removeAccents(todo.text).includes(removeAccents(searchValue))
@@ -66,10 +65,8 @@ function useTodos() {
       text = text[0].toUpperCase() + text.slice(1);
     }
 
-    saveTodos([...toDo, { text, completed: false, id: getTime()}]);
+    saveTodos([...toDo, { text, completed: false, id: getTime() }]);
   };
-
-  
 
   const completedCount = toDo.filter((todo) => todo.completed).length;
   const totalCount = toDo.length;
@@ -91,7 +88,7 @@ function useTodos() {
     editToDo,
     syncTodos,
   };
-  return {stateS, stateUpdater}
+  return { stateS, stateUpdater };
 }
 
 export { useTodos };

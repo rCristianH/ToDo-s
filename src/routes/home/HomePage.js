@@ -6,13 +6,15 @@ import { TodoItem } from "../../UI/TodoItem";
 import { CreateTodoButton } from "../../UI/CreateTodoButton";
 import { TodoItemLoading } from "../../UI/TodoItem/TodoItemLoading";
 import { useTodos } from "../../utils/useTodos";
-import { Modal } from "../../UI/Modal";
-import { MakeToDo } from "../../UI/Modal/MakeToDo";
+/* import { Modal } from "../../UI/Modal";
+ */ import { MakeToDo } from "../../UI/MakeToDo";
 import { TodoMsgError } from "../../UI/TodoItem/TodoMsgError";
 import { TodoHeader } from "../../UI/TodoHeader";
 import { ChangeAlert } from "../../UI/ChangeAlert";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate();
   const { stateS, stateUpdater } = useTodos();
   const {
     loading,
@@ -20,8 +22,8 @@ function HomePage() {
     completedCount,
     totalCount,
     filteredTodos,
-    openModal,
-    searchValue,
+    /*     openModal,
+     */ searchValue,
   } = stateS;
   const {
     setSearchValue,
@@ -29,8 +31,8 @@ function HomePage() {
     completedToDo,
     removeToDo,
     editToDo,
-    setOpenModal,
-    syncTodos,
+    /*     setOpenModal,
+     */ syncTodos,
   } = stateUpdater;
   return (
     <div className="App">
@@ -66,8 +68,8 @@ function HomePage() {
               onRemove={() => {
                 removeToDo(todo.id);
               }}
-              onEdit={()=>{
-                editToDo(todo.id)
+              onEdit={() => {
+                navigate(`/edit/${todo.id}`)
               }}
               key={todo.id}
               text={todo.text}
@@ -78,19 +80,22 @@ function HomePage() {
       </main>
       <footer className="App-footer">
         <CreateTodoButton
+          onClick={() => {
+            navigate("/new");
+          }}
           handleAddTodo={handleAddTodo}
+          setSearchValue={setSearchValue}
           searchValue={searchValue}
-          setOpenModal={setOpenModal}
         />
       </footer>
-      {openModal && (
+      {/* {openModal && (
         <Modal>
           <MakeToDo handleAddTodo={handleAddTodo} setOpenModal={setOpenModal} />
         </Modal>
       )}
-      <ChangeAlert sync={syncTodos} />
+      <ChangeAlert sync={syncTodos} /> */}
     </div>
   );
 }
 
-export default HomePage;
+export { HomePage };
