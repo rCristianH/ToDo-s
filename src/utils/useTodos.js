@@ -60,6 +60,12 @@ function useTodos() {
     removeAccents(todo.text).includes(removeAccents(searchValue))
   );
 
+  const findToDo = (id) => {
+    const todoList = [...toDo];
+    const toDoIndex = todoList.findIndex((todo) => todo.id === id);
+    return todoList[toDoIndex];
+  };
+
   const handleAddTodo = (text) => {
     if (text[0] !== text[0].toUpperCase()) {
       text = text[0].toUpperCase() + text.slice(1);
@@ -86,6 +92,7 @@ function useTodos() {
     removeToDo,
     setOpenModal,
     editToDo,
+    findToDo,
     syncTodos,
   };
   return { stateS, stateUpdater };

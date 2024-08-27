@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../MakeToDo/MakeToDo.css";
 import { MdOutlineCancel, MdSave } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { useTodos } from "../../utils/useTodos";
 
 const EditToDo = () => {
   const { stateUpdater } = useTodos();
-  const { editToDo } = stateUpdater;
+  const { editToDo, findToDo } = stateUpdater;
 
   const [nameNewTodo, setNameNewTodo] = useState("");
   const navigate = useNavigate();
@@ -36,6 +36,19 @@ const EditToDo = () => {
       onCancel();
     }
   };
+  const getToDo = () => {
+    const id = getId();
+    let out = findToDo(id);
+    if (out == undefined) {
+      return ""
+    } else {
+      return out.text;
+    }
+  };
+  useEffect(() => {
+    setNameNewTodo(getToDo());
+  });
+
   return (
     <div className="container-makeTodo">
       <input

@@ -36,7 +36,7 @@ function useLocalStorage(itemName, initialValue) {
     } catch (error) {
       onCatch();
     }
-  }, [sync]); // Asegúrate de incluir 'item' en la dependencia del useEffect
+  }, []); // Asegúrate de incluir 'item' en la dependencia del useEffect
 
   const saveItem = (newItem) => {
     onUpdateItem(newItem);
