@@ -3,8 +3,7 @@ import { HomePage } from "./home/HomePage";
 import { NewTodoPage } from "./new/NewTodoPage";
 import { EditTodoPage } from "./edit/EditTodoPage";
 import { NotFound } from "./notFound/NotFound";
-import { TodoSearch } from "../UI/TodoSearch";
-import { TodoHeader } from "../UI/TodoHeader";
+
 
 function App() {
   return (

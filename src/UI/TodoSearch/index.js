@@ -6,7 +6,6 @@ function TodoSearch({ searchValue, setSearchValue, paramSearch }) {
     setSearchValue(paramSearch);
   }
   const handleSearchChange = (event) => {
-    let value = event.target.value
     if (event.target.value.length >= 1) {
       setSearchValue(event.target.value);
       navigate(`/search/${event.target.value}`);
