@@ -1,4 +1,4 @@
 function NotFound () {
-  return (<H2>NotFound</H2>)
+  return (<h2>NotFound</h2>)
 }
 export {NotFound}
