@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./MakeToDo.css";
 import { MdOutlineCancel, MdSave } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useTodos } from "../../utils/useTodos";
 
 function MakeToDo() {
   const { stateUpdater } = useTodos();
   const { handleAddTodo } = stateUpdater;
   const [nameNewTodo, setNameNewTodo] = useState("");
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const onSubmit = () => {
     if (nameNewTodo.trim() === "") {
@@ -19,7 +19,7 @@ function MakeToDo() {
     }
   };
   const onCancel = () => {
-    navigate("/");
+    history.push("/");
   };
   const onChange = (event) => {
     setNameNewTodo(event.target.value);

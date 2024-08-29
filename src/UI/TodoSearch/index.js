@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function TodoSearch({ searchValue, setSearchValue, paramSearch }) {
-  const navigate = useNavigate();
+  const history = useHistory();
   if(paramSearch){
     setSearchValue(paramSearch);
   }
@@ -9,10 +9,10 @@ function TodoSearch({ searchValue, setSearchValue, paramSearch }) {
     let value = event.target.value
     if (event.target.value.length >= 1) {
       setSearchValue(event.target.value);
-      navigate(`/search/${event.target.value}`);
+      history.push(`/search/${event.target.value}`);
     } else {
       setSearchValue("");
-      navigate("/");
+      history.push("/");
     }
   };
   return (
@@ -21,9 +21,9 @@ function TodoSearch({ searchValue, setSearchValue, paramSearch }) {
       onChange={handleSearchChange}
       /* onChange={(e) => {
         if (e.target.value.length >= 1) {
-          navigate(`/search/${e.target.value}`);
+          history.push(`/search/${e.target.value}`);
         } else {
-          navigate("/");
+          history.push("/");
         }
         setSearchValue(e.target.value);
       }} */

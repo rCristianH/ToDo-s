@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../MakeToDo/MakeToDo.css";
 import { MdOutlineCancel, MdSave } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useTodos } from "../../utils/useTodos"
 import { getId } from "../../utils/genIDs";
 
@@ -12,10 +12,10 @@ const EditToDo = ({ defaultTodoText }) => {
 
   const [nameNewTodo, setNameNewTodo] = useState(defaultTodoText);
 
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const onCancel = () => {
-    navigate("/");
+    history.push("/");
   };
   const onChange = (event) => {
     setNameNewTodo(event.target.value);

@@ -8,10 +8,10 @@ import { TodoItemLoading } from "../../UI/TodoItem/TodoItemLoading";
 import { useTodos } from "../../utils/useTodos";
 import { TodoMsgError } from "../../UI/TodoItem/TodoMsgError";
 import { TodoHeader } from "../../UI/TodoHeader";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function HomePage() {
-  const navigate = useNavigate();
+  const history = useHistory();
   const { stateS, stateUpdater } = useTodos();
   const {
     loading,
@@ -62,7 +62,7 @@ function HomePage() {
                 removeToDo(todo.id);
               }}
               onEdit={() => {
-                navigate(`/edit/${todo.id}`);
+                history.push(`/edit/${todo.id}`);
               }}
               key={todo.id}
               text={todo.text}
@@ -74,7 +74,7 @@ function HomePage() {
       <footer className="App-footer">
         <CreateTodoButton
           onClick={() => {
-            navigate("/new");
+            history.push("/new");
           }}
           handleAddTodo={handleAddTodo}
           setSearchValue={setSearchValue}

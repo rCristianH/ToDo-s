@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import { HomePage } from "./home/HomePage";
 import { NewTodoPage } from "./new/NewTodoPage";
 import { EditTodoPage } from "./edit/EditTodoPage";
@@ -9,13 +9,28 @@ import { TodoHeader } from "../UI/TodoHeader";
 function App() {
   return (
     <HashRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/search/:id" element={<HomePage />} />
-        <Route path="/new" element={<NewTodoPage />} />
-        <Route path="/edit/:id" element={<EditTodoPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/">
+          {" "}
+          <HomePage />{" "}
+        </Route>
+        <Route exact path="/search/:id">
+          {" "}
+          <HomePage />{" "}
+        </Route>
+        <Route exact path="/new">
+          {" "}
+          <NewTodoPage />{" "}
+        </Route>
+        <Route exact path="/edit/:id">
+          {" "}
+          <EditTodoPage />{" "}
+        </Route>
+        <Route exact path="*">
+          {" "}
+          <NotFound />{" "}
+        </Route>
+      </Switch>
     </HashRouter>
   );
 }
