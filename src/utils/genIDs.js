@@ -32,5 +32,15 @@ const enCrypt = (numero) => {
   // Unir el array en una cadena de texto y retornarla
   return digitosArray.join("");
 };
+const getId = () => {
+  // Obtener la URL actual
+  const url = window.location.href;
 
-export { getTime };
+  // Extraer la parte después de "/edit/"
+  const number = url.split("/edit/")[1];
+
+  // Mostrar el número extraído
+  return number;
+};
+
+export { getTime, getId };
