@@ -81,12 +81,6 @@ function HomePage() {
           searchValue={searchValue}
         />
       </footer>
-      {/* {openModal && (
-        <Modal>
-          <MakeToDo handleAddTodo={handleAddTodo} setOpenModal={setOpenModal} />
-        </Modal>
-      )}
-      <ChangeAlert sync={syncTodos} /> */}
     </div>
   );
 }

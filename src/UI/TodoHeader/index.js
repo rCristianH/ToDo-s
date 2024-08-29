@@ -1,5 +1,7 @@
 import { TodoCounter } from "../TodoCounter";
 import { TodoSearch } from "../TodoSearch";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 function TodoHeader({
   loading,
@@ -9,6 +11,10 @@ function TodoHeader({
   searchValue,
   setSearchValue,
 }) {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const searchTerm = pathname.substring("/search/".length);
+
   return (
     <header className="App-header">
       {loading && <h1 className="App-title">Estamos buscando tus ToDo`s</h1>}
@@ -21,7 +27,7 @@ function TodoHeader({
       {!loading && (
         <TodoCounter completedCount={completedCount} totalCount={totalCount} />
       )}
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TodoSearch paramSearch={searchTerm} searchValue={searchValue} setSearchValue={setSearchValue} />
     </header>
   );
 }
