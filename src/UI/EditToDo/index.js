@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../MakeToDo/MakeToDo.css";
 import { MdOutlineCancel, MdSave } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useTodos } from "../../utils/useTodos";
+import { useTodos } from "../../utils/useTodos"
+import { getId } from "../../utils/genIDs";
 
-const EditToDo = () => {
+
+const EditToDo = ({ defaultTodoText }) => {
   const { stateUpdater } = useTodos();
-  const { editToDo, findToDo } = stateUpdater;
+  const { editToDo } = stateUpdater;
 
-  const [nameNewTodo, setNameNewTodo] = useState("");
+  const [nameNewTodo, setNameNewTodo] = useState(defaultTodoText);
+
   const navigate = useNavigate();
 
-  const getId = () => {
-    // Obtener la URL actual
-    const url = window.location.href;
-
-    // Extraer la parte después de "/edit/"
-    const number = url.split("/edit/")[1];
-
-    // Mostrar el número extraído
-    return number;
-  };
   const onCancel = () => {
     navigate("/");
   };
@@ -36,18 +29,6 @@ const EditToDo = () => {
       onCancel();
     }
   };
-  const getToDo = () => {
-    const id = getId();
-    let out = findToDo(id);
-    if (out == undefined) {
-      return ""
-    } else {
-      return out.text;
-    }
-  };
-  useEffect(() => {
-    setNameNewTodo(getToDo());
-  });
 
   return (
     <div className="container-makeTodo">

@@ -2,7 +2,7 @@ import { useEffect, useReducer } from "react";
 
 function useLocalStorage(itemName, initialValue) {
   const [state, dispatch] = useReducer(reducer, initialState({ initialValue }));
-  const { item, sync, loading, error } = state;
+  const { item, loading, error } = state;
 
   const onSync = () => {
     dispatch({ type: actionTypes.sync });
@@ -36,7 +36,7 @@ function useLocalStorage(itemName, initialValue) {
     } catch (error) {
       onCatch();
     }
-  }, []); // Asegúrate de incluir 'item' en la dependencia del useEffect
+  }, [item,itemName]); // Asegúrate de incluir 'item' en la dependencia del useEffect
 
   const saveItem = (newItem) => {
     onUpdateItem(newItem);
